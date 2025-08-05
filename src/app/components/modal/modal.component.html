@@ -1,0 +1,12 @@
+@if (isOpenModal == true) {
+<body>
+  <form class="modal" method="dialog">
+    <input type="text" placeholder="Enter your Title" value="Title" />
+    <textarea placeholder="Write your notes here..."></textarea>
+    <div class="button-container">
+      <button class="cancel" (click)="closeModal()">Cancel</button>
+      <button class="save" type="submit">Save</button>
+    </div>
+  </form>
+</body>
+}

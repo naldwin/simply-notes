@@ -1,0 +1,13 @@
+<body>
+  <app-modal [isOpenModal]="bool"></app-modal>
+  <app-header (isOpenModal)="openModal($event)"></app-header>
+  @for (note of notes; let i = $index; track note.title){
+  <app-note [title]="note.title" [content]="note.content" [i]="i" (isOpenModal)="openModal($event)"></app-note>
+  } @empty {
+  <p style="text-align: center; margin: 100px 0">
+    Empty notes, add your first note.
+  </p>
+  }
+
+  <app-footer></app-footer>
+</body>

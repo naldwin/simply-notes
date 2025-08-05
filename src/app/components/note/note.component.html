@@ -1,0 +1,13 @@
+<body (click)="openModal()"> 
+  <div class="top-part-note-box">
+    <h2>{{ title }}</h2>
+    <div>
+      <button (click)="deleteNote(i)">
+        <img src="/icon/delete.svg" alt="Delete" width="25">
+      </button>
+    </div>
+  </div>
+  <p>
+    {{ content }}
+  </p>
+</body>

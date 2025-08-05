@@ -1,0 +1,79 @@
+body {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    margin: auto;
+
+    background-color: rgba(0, 0, 0, 0.3);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal {
+    background-color: rgba(255, 255, 255, 0.938);
+    border-radius: 55px;
+    padding: 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+button {
+    padding: 5px 15px;
+    min-width: 80px;
+    border-radius: 15px;
+    border: none;
+    font-family: 'poppins';
+    cursor: pointer;
+    opacity: .8;
+}
+button:hover {
+    opacity: 1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
+}
+.save {
+    background-color: #526ff1;
+    color: white;
+}
+
+
+
+input {
+    font-family: "PP Pangaia";
+    font-size: 30px;
+    /* width: 700px;
+    height: 50px; */
+    border: none;
+    padding: 10px;
+    background-color: transparent;
+}
+
+input:focus {
+    outline: none;
+}
+
+textarea {
+    background-color: transparent;
+    font-family: 'poppins';
+    width: 700px;
+    height: 200px;
+    border: none;
+    padding: 10px;
+    font-size: 14px;
+    resize: vertical;
+}
+
+textarea:focus {
+    outline: none;
+}
