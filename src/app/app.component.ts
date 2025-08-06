@@ -15,7 +15,7 @@ import { notes } from './notes';
 export class AppComponent {
   title = 'naldwin-app';
   notes = notes;
-  bool: boolean = false;
+  isModalOpen: boolean = false;
 
   noteId !: number;
   noteTitle !: string;
@@ -24,20 +24,26 @@ export class AppComponent {
   modalOpen!: boolean;
 
   showValues(event: any) {
-    this.bool = true;
+    this.isModalOpen = true;
 
     this.noteId = event.id;
     this.noteTitle = event.title;
     this.noteContent = event.content;
   }
 
-  openModal(event: boolean) {
-    console.log('Modal opened:', event);
-    this.bool = event;
+  openAddModal() {
+    this.isModalOpen = true;
   }
 
   closeModal(event: boolean) {
-    this.bool = event;
+    this.isModalOpen = event;
+    this.noteId = 0;
+    this.noteTitle = '';
+    this.noteContent = '';
+  }
+
+  addModal() {
+    this.isModalOpen = true;
     this.noteId = 0;
     this.noteTitle = '';
     this.noteContent = '';

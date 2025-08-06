@@ -1,20 +1,15 @@
 <body>
-  <app-modal [modalOpen]="bool" [id]="noteId" [title]="noteTitle" [content]="noteContent" (modalClose)="closeModal($event)"></app-modal>
-  <app-header></app-header>
+  <app-modal [modalOpen]="isModalOpen" [id]="noteId" [title]="noteTitle" [content]="noteContent" (modalClose)="closeModal($event)"></app-modal>
+  <app-header (addModal)="openAddModal()"></app-header>
 
-  @for (note of notes; track note.id){
+  @for (note of notes; let i = $index; track note.id){
   <app-note
     [title]="note.title"
     [content]="note.content"
-    [id]="note.id"
+    [id]="i"
     (select)="showValues($event)" 
-    
   ></app-note>
-  } @empty {
-  <p style="text-align: center; margin: 100px 0">
-    Empty notes, add your first note.
-  </p>
   }
 
-  <app-footer></app-footer>+
+  <!-- <app-footer></app-footer> -->
 </body>

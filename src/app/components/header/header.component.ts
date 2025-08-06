@@ -8,10 +8,11 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 
 export class HeaderComponent {
-  @Output() isOpenModal = new EventEmitter();
+  @Output() addModal = new EventEmitter();
 
-  openModal() {
-    this.isOpenModal.emit(true);
+  emitTrueModal() {
+    console.log('Add Modal Triggered');
+    this.addModal.emit(true);
   } 
 }
  

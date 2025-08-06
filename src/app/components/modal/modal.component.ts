@@ -19,4 +19,8 @@ export class ModalComponent {
   emitFalseModal() {
     this.modalClose.emit(false);
   }
+
+  saveNote() {
+    
+  }
 }

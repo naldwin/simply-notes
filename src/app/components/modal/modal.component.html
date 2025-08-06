@@ -1,12 +1,12 @@
 @if (modalOpen == true) {
 <body>
-  <form class="modal" method="">
+  <div class="modal">
     <input type="text" placeholder="Enter your Title" value="{{ title }}" />
     <textarea placeholder="Write your notes here...">{{ content }}</textarea>
     <div class="button-container">
       <button class="cancel" (click)="emitFalseModal()">Close</button>
-      <button class="save" type="submit">Save</button>
+      <button class="save" (click)="saveNote()">Save</button>
     </div>
-  </form>
+  </div>
 </body>
 }
