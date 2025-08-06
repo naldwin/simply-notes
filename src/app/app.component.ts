@@ -17,9 +17,29 @@ export class AppComponent {
   notes = notes;
   bool: boolean = false;
 
-  openModal($event: boolean): void {
-    console.log('Modal opened:', $event);
-    this.bool = $event;
+  noteId !: number;
+  noteTitle !: string;
+  noteContent !: string;
+
+  modalOpen!: boolean;
+
+  showValues(event: any) {
+    this.bool = true;
+
+    this.noteId = event.id;
+    this.noteTitle = event.title;
+    this.noteContent = event.content;
   }
 
+  openModal(event: boolean) {
+    console.log('Modal opened:', event);
+    this.bool = event;
+  }
+
+  closeModal(event: boolean) {
+    this.bool = event;
+    this.noteId = 0;
+    this.noteTitle = '';
+    this.noteContent = '';
+  }
 }

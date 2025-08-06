@@ -6,12 +6,17 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.css',
 })
+
 export class ModalComponent {
-  @Input() isOpenModal!: boolean;
-  @Input() str!: string;
-  @Output() isOpenModalChange = new EventEmitter<boolean>();
-  closeModal() {
-    this.isOpenModal = false;
-    this.isOpenModalChange.emit(this.isOpenModal);
+  @Input() modalOpen!: boolean;
+
+  @Input() id!: number;
+  @Input() title!: string;
+  @Input() content!: string;
+
+  @Output() modalClose = new EventEmitter();
+
+  emitFalseModal() {
+    this.modalClose.emit(false);
   }
 }

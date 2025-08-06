@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +8,7 @@ import { ModalComponent } from '../modal/modal.component';
 })
 
 export class HeaderComponent {
-  @Output() isOpenModal = new EventEmitter<boolean>();
+  @Output() isOpenModal = new EventEmitter();
 
   openModal() {
     this.isOpenModal.emit(true);

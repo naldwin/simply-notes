@@ -14,7 +14,7 @@ body {
 
   cursor: pointer;
 
-  transition: all 0.7s;
+  transition: all ease-out 0.8s;
 }
 
 body:hover {
@@ -26,8 +26,6 @@ h2 {
   font-family: "PP Pangaia";
   font-size: 25px;
   color: #111;
-
-  border-bottom: #111 sold 2px;
 }
 
 p {

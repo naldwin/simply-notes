@@ -1,8 +1,8 @@
-<body (click)="openModal()"> 
+<body (click)="showValues()"> 
   <div class="top-part-note-box">
     <h2>{{ title }}</h2>
     <div>
-      <button (click)="deleteNote(i)">
+      <button (click)="deleteNote(id); $event.stopPropagation()">
         <img src="/icon/delete.svg" alt="Delete" width="25">
       </button>
     </div>
