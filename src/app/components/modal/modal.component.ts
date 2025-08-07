@@ -1,6 +1,7 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, inject } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { notes } from '../../notes';
+import { NotesService } from '../../notes.service';
 
 @Component({
   selector: 'app-modal',
@@ -8,8 +9,11 @@ import { notes } from '../../notes';
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.css',
   imports: [ReactiveFormsModule],
+  providers: [NotesService],
 })
 export class ModalComponent {
+  constructor(private notesService: NotesService) {}
+
   @Input() modalOpen!: boolean;
   @Input() modalMode!: string;
   @Input() noteIndex!: number;
@@ -39,26 +43,29 @@ export class ModalComponent {
       if (this.noteForm.value.title === null) {
         noteForm.title = 'Untitled Note';
       }
-      notes.unshift(noteForm);
-      console.log('Note saved:', noteForm);
+      this.notesService.addNote(noteForm);
     }
     this.noteForm.reset();
     this.modalClose.emit(false);
   }
 
+  noteTitle = inject(NotesService).indexValues.title;
+  noteContent = inject(NotesService).indexValues.content;
+
   editForm = new FormGroup({
-    index: new FormControl(this.noteIndex),
-    title: new FormControl(this.title),
-    content: new FormControl(this.content),
+    title: new FormControl(this.noteTitle),
+    content: new FormControl(this.noteContent),
   });
 
-  // To edit/recode
   saveEdittedNote() {
-    const edittedForm = {
-      index: this.editForm.value.index,
-      title: this.editForm.value.title,
-      content: this.editForm.value.content,
-    }
-    console.log('Saving edited note:', edittedForm);
+    // const edittedForm = {
+    //   // index: this.editForm.value.index,
+    //   title: this.editForm.value.title,
+    //   content: this.editForm.value.content,
+    // };
+
+    console.log(this.editForm.value);
+
+    // console.log('Saving edited note:', edittedForm);
   }
 }

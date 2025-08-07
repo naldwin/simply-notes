@@ -33,27 +33,27 @@
   <!-- edit modal -->
 
   @else if (modalMode == 'edit') {
-  <form class="modal">
-    <input type="hidden" value="{{ noteIndex }}"/>
+  <form class="modal" [formGroup]="editForm">
     <div class="top-modal-part">
       <input
         type="text"
         placeholder="Enter your Title"
-        value="{{ title }}"
+        formControlName="title"
       />
 
       <div class="button-container">
         <div class="cancel" (click)="emitFalseModal()">
           <img src="/icon/exit.svg" alt="Save" width="20" />
         </div>
-        <button class="save">
+        <div class="save" (click)="saveEdittedNote()">
           <img src="/icon/save.svg" alt="Save" width="20" />
-        </button>
+        </div>
       </div>
     </div>
     <textarea
       placeholder="Write your notes here..."
-      >{{ content }}</textarea
+      formControlName="content"
+      ></textarea
     >
     <p class="feelfree">Feel free to adjust your text area's height.</p>
   </form>

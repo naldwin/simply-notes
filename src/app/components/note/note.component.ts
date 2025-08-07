@@ -17,17 +17,16 @@ export class NoteComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  editNote() {
+  editNote(i: number): void {
     this.editModal.emit({
-      index: this.index,
+      index: i,
       title: this.title,
       content: this.content,
     });
   }
 
   deleteNote(index: number): void {
-    console.log('Deleting note at index:', index);
     this.notes.splice(index, 1);
-    console.log('Deleting note successful');
+    console.log('Deleted note at index:', index , this.notes);
   }
 }

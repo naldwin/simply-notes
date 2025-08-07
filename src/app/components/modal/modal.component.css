@@ -52,7 +52,21 @@ button:hover {
 }
 .save {
   background-color: #526ff1;
-  color: white;
+
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
+  transition: all ease-out 0.3s;
+  opacity: 0.8;
+  border: none;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 50px;
+  aspect-ratio: 1 / 1;
 }
 
 .cancel {

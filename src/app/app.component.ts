@@ -3,6 +3,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NoteComponent } from './components/note/note.component';
 import { ModalComponent } from './components/modal/modal.component';
+import { NotesService } from './notes.service';
 import { notes } from './notes';
 
 @Component({
@@ -11,27 +12,29 @@ import { notes } from './notes';
   imports: [HeaderComponent, NoteComponent, FooterComponent, ModalComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
+  providers: [NotesService],
 })
 export class AppComponent {
+  constructor(private notesService: NotesService) {}
+
   title = 'naldwin-app';
   notes = notes;
   isModalOpen: boolean = false;
   modalMode!: string;
   modalOpen!: boolean;
-  noteIndex !: number;
-  noteTitle !: string;
-  noteContent !: string;
+  noteIndex!: number;
+  noteTitle!: string;
+  noteContent!: string;
 
   editModal(event: any) {
-    this.isModalOpen = true;
-    this.modalMode = 'edit';
-
     this.noteIndex = event.index;
     this.noteTitle = event.title;
     this.noteContent = event.content;
+    console.log('Editing Note:', this.noteIndex);
+    this.notesService.toEdit(this.noteIndex);
 
-    console.log('Edit Note Index:', this.noteIndex);
-    console.log(event)
+    this.isModalOpen = true;
+    this.modalMode = 'edit';
   }
 
   openAddModal() {
