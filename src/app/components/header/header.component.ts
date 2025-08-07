@@ -11,8 +11,7 @@ export class HeaderComponent {
   @Output() addModal = new EventEmitter();
 
   emitTrueModal() {
-    console.log('Add Modal Triggered');
-    this.addModal.emit(true);
+    this.addModal.emit();
   } 
 }
  

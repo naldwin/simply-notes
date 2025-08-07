@@ -16,35 +16,33 @@ export class AppComponent {
   title = 'naldwin-app';
   notes = notes;
   isModalOpen: boolean = false;
-
-  noteId !: number;
+  modalMode!: string;
+  modalOpen!: boolean;
+  noteIndex !: number;
   noteTitle !: string;
   noteContent !: string;
 
-  modalOpen!: boolean;
-
-  showValues(event: any) {
+  editModal(event: any) {
     this.isModalOpen = true;
+    this.modalMode = 'edit';
 
-    this.noteId = event.id;
+    this.noteIndex = event.index;
     this.noteTitle = event.title;
     this.noteContent = event.content;
+
+    console.log('Edit Note Index:', this.noteIndex);
+    console.log(event)
   }
 
   openAddModal() {
     this.isModalOpen = true;
+    this.modalMode = 'add';
+    console.log('Add Note Opened');
   }
 
   closeModal(event: boolean) {
     this.isModalOpen = event;
-    this.noteId = 0;
-    this.noteTitle = '';
-    this.noteContent = '';
-  }
-
-  addModal() {
-    this.isModalOpen = true;
-    this.noteId = 0;
+    this.noteIndex = 0;
     this.noteTitle = '';
     this.noteContent = '';
   }
