@@ -30,17 +30,18 @@ export class AppComponent {
     this.noteIndex = event.index;
     this.noteTitle = event.title;
     this.noteContent = event.content;
-    console.log('Editing Note:', this.noteIndex);
-    this.notesService.toEdit(this.noteIndex);
 
-    this.isModalOpen = true;
+    this.notesService.toEdit(this.noteIndex);
+    console.log('Editing Note:', this.noteIndex);
+
     this.modalMode = 'edit';
+    this.isModalOpen = true;
   }
 
   openAddModal() {
     this.isModalOpen = true;
     this.modalMode = 'add';
-    console.log('Add Note Opened');
+    console.log('Add Note Opened');3
   }
 
   closeModal(event: boolean) {

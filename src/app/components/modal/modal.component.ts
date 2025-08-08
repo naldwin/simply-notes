@@ -1,4 +1,11 @@
-import { Component, Input, Output, EventEmitter, inject } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  inject,
+  SimpleChanges,
+} from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { notes } from '../../notes';
 import { NotesService } from '../../notes.service';
@@ -9,7 +16,6 @@ import { NotesService } from '../../notes.service';
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.css',
   imports: [ReactiveFormsModule],
-  providers: [NotesService],
 })
 export class ModalComponent {
   constructor(private notesService: NotesService) {}
@@ -19,8 +25,16 @@ export class ModalComponent {
   @Input() noteIndex!: number;
   @Input() title!: string;
   @Input() content!: string;
-
   @Output() modalClose = new EventEmitter();
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['title'] || changes['content']) {
+      this.editForm.patchValue({
+        title: this.title,
+        content: this.content,
+      });
+    }
+  }
 
   emitFalseModal() {
     this.modalClose.emit(false);
@@ -33,18 +47,10 @@ export class ModalComponent {
 
   saveNote() {
     const noteForm = {
-      title: this.noteForm.value.title ?? '',
-      content: this.noteForm.value.content ?? '',
+      title: this.noteForm.value.title || 'Untitled Note',
+      content: this.noteForm.value.content || '',
     };
-    if (
-      this.noteForm.value.title != null ||
-      this.noteForm.value.content != null
-    ) {
-      if (this.noteForm.value.title === null) {
-        noteForm.title = 'Untitled Note';
-      }
-      this.notesService.addNote(noteForm);
-    }
+    this.notesService.addNote(noteForm);
     this.noteForm.reset();
     this.modalClose.emit(false);
   }
@@ -58,14 +64,12 @@ export class ModalComponent {
   });
 
   saveEdittedNote() {
-    // const edittedForm = {
-    //   // index: this.editForm.value.index,
-    //   title: this.editForm.value.title,
-    //   content: this.editForm.value.content,
-    // };
-
-    console.log(this.editForm.value);
-
-    // console.log('Saving edited note:', edittedForm);
+    const updatedNote = {
+      title: this.editForm.value.title || 'Untitled Note',
+      content: this.editForm.value.content || '',
+    };
+    this.notesService.editNote(this.noteIndex, updatedNote);
+    this.editForm.reset();
+    this.modalClose.emit(false);
   }
 }

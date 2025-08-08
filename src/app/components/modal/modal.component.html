@@ -1,10 +1,9 @@
 @if (modalOpen == true) {
 <body>
-
   <!-- add modal -->
 
   @if (modalMode == 'add') {
-  <form [formGroup]="noteForm" (submit)="saveNote()" class="modal">
+  <form [formGroup]="noteForm" (ngSubmit)="saveNote()" class="modal">
     <input type="hidden" />
     <div class="top-modal-part">
       <input
@@ -28,12 +27,12 @@
     ></textarea>
     <p class="feelfree">Feel free to adjust your text area's height.</p>
   </form>
-  } 
-  
+  }
+
   <!-- edit modal -->
 
   @else if (modalMode == 'edit') {
-  <form class="modal" [formGroup]="editForm">
+  <form class="modal" [formGroup]="editForm" (ngSubmit)="saveEdittedNote()">
     <div class="top-modal-part">
       <input
         type="text"
@@ -43,23 +42,20 @@
 
       <div class="button-container">
         <div class="cancel" (click)="emitFalseModal()">
-          <img src="/icon/exit.svg" alt="Save" width="20" />
+          <img src="/icon/exit.svg" alt="Cancel" width="20" />
         </div>
-        <div class="save" (click)="saveEdittedNote()">
+        <button class="save" type="submit">
           <img src="/icon/save.svg" alt="Save" width="20" />
-        </div>
+        </button>
       </div>
     </div>
     <textarea
       placeholder="Write your notes here..."
       formControlName="content"
-      ></textarea
-    >
+    ></textarea>
     <p class="feelfree">Feel free to adjust your text area's height.</p>
   </form>
   }
-
-
 </body>
 
 }
